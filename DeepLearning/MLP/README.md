@@ -1,4 +1,4 @@
 ##  Basic Neural Networks in PyTorch
 
-** Simple NN
-** Multi-Layer Perceptron
+* Simple NN
+* Multi-Layer Perceptron
