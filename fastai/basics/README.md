@@ -1,1 +1,0 @@
-## Basic intro to fastai
