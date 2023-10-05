@@ -1,5 +1,73 @@
 <html>
-
-
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
+  <script src="./index.js"></script>
   
+  <style>
+      
+      table, th, td {
+           border: 1px solid;
+      }
+      
+      #leftbox {
+                float:left; 
+                width:33%;
+                height:300px;
+      }
+      #middlebox{
+                float:left; 
+                width:33%;
+                height:300px;
+        }
+        #rightbox{
+                float:right;
+                width:33%;
+                height:300px;
+        }
+        h1{
+                color:green;
+                text-align:center;
+        }
+     
+     
+      
+  </style>
+</head>
+<body>
+  
+  <h1> Wine Quality NN </h1>
+  
+  
+  
+  
+    <div id = "boxes1">
+         
+              
+  <input type="text" id="box0c1" value="38"> i_h2_inj_kg_thm <br/>
+  <input type="text" id="box1c1" value="0"> i_pul_coal_inj_kg_thm <br/>
+  <input type="text" id="box2c1" value="300"> i_nat_gas_inj_kg_thm <br/>
+  <input type="text" id="box3c1" value="27"> i_nat_gas_t_k <br/>
+  <input type="text" id="box4c1" value="7"> i_o2_vol_perce <br/>
+  <input type="text" id="box5c1" value="87618"> i_hot_blast_temp_k <br/>
+
+    </div> 
+      
+  <div>
+      <input style="background-color:yellow" type="button" value="Run" onclick="runExample()"/>
+   </div>
+  
+
+        <div id = "boxes2">
+              
+           
+              <h2>Inference 1</h2>
+              
+               <div id="predictions1">
+               </div>
+              
+
+        </div>
+  
+
+</body>
 </html>
