@@ -1,0 +1,78 @@
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
+  <script src="./index.js"></script>
+  
+  <style>
+      
+      table, th, td {
+           border: 1px solid;
+      }
+      
+      #leftbox {
+                float:left; 
+                width:33%;
+                height:300px;
+      }
+      #middlebox{
+                float:left; 
+                width:33%;
+                height:300px;
+        }
+        #rightbox{
+                float:right;
+                width:33%;
+                height:300px;
+        }
+        h1{
+                color:green;
+                text-align:center;
+        }
+     
+     
+      
+  </style>
+</head>
+<body>
+  
+  <h1> Wine Quality NN </h1>
+  
+  
+  
+  
+    <div id = "boxes1">
+         
+              
+  <input type="text" id="box1" value="38"> x1 <br/>
+  <input type="text" id="box2" value="0"> x2 <br/>
+  <input type="text" id="box3" value="300"> x3  <br/>
+  <input type="text" id="box4" value="27">x4 <br/>
+  <input type="text" id="box5" value="7" >x5 <br/>
+  <input type="text" id="box6" value="87618"> x6 <br/>
+  <input type="text" id="box7" value="0"> x7 <br/>
+  <input type="text" id="box8" value="300"> x8  <br/>
+  <input type="text" id="box9" value="27"> x9 <br/>
+  <input type="text" id="box10" value="7" > x10 <br/>
+  <input type="text" id="box11" value="87618"> x11 <br/>
+
+    </div> 
+      
+  <div>
+      <input style="background-color:yellow" type="button" value="Run" onclick="runExample()"/>
+   </div>
+  
+
+        <div id = "boxes2">
+              
+           
+              <h2>Inference </h2>
+              
+               <div id="predictions">
+               </div>
+              
+
+        </div>
+  
+
+</body>
+</html>
