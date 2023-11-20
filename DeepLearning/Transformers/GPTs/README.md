@@ -8,8 +8,8 @@
 
 * GPT is only the decoder part of the original Transformer architecture (Vaswani et al. 2017)
 
-* File: GenerativeTransformerTinyGPT.py
-
+* File: the jupyter
+* 
 ## Tokens
 
 * The tokens are the characters 
