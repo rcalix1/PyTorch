@@ -11,7 +11,9 @@
 * GPT is only the decoder part of the original Transformer architecture (Vaswani et al. 2017)
 
 * File: the jupyter
-* 
+  
+* Original Paper: https://arxiv.org/abs/1706.03762
+
 ## Tokens
 
 * The tokens are the characters 
