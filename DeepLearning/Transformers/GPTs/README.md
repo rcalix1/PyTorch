@@ -1,5 +1,7 @@
 ## Decoder only (GPTs)
 
+* To replicate these results use: GenerativeTransformerTinyGPT.py
+
 ## A Tiny GPT
 
 * a tiny ChatGPT style LLM 
