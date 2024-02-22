@@ -106,14 +106,16 @@
        }
 
 
-        }
+  
         
         async function loadImagefromPath(path, width = 32, height = 32) {
             // Use Jimp to load the image and resize it.
+            
             var imageData = await Jimp.read(path).then((imageBuffer) => {
                 return imageBuffer.cover(width, height);
             });
-
+            
+             alert("end3");
              await  imageData.writeAsync('RC_panda.jpg');
             
              imageData.getBase64Async(jimp.MIME_JPEG).then(newImage => {
