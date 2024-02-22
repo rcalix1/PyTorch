@@ -98,6 +98,8 @@
                 return imageBuffer.cover(width, height);
             });
 
+             await  imageData.writeAsync('RC_panda.jpg');
+            
              imageData.getBase64Async(jimp.MIME_JPEG).then(newImage => {
                     let tag = document.createElement("img");
                     tag.src = newImage;
