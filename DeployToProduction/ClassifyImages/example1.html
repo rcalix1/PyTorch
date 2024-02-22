@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Images</title>
+    <title>Image read in and resized</title>
     <style>
         .no-margin-ul {
             margin: 0;
@@ -19,7 +19,7 @@
 <body>
     <h2>Images</h2>
     <h2>Images</h2>
-    <input type="file" name="RCImage" onchange="inputChanged(event)" autocomplete="off">
+    <input type="file" name="Image" onchange="inputChanged(event)" autocomplete="off">
     <p>
         Current status: <span id="status-output">Nothing</span>
     </p>
@@ -46,6 +46,8 @@
 
         const statusOutput = document.getElementById("status-output")        
 
+
+        
         async function getImageTensorFromPath(path, dims =  [1, 3, 32, 32]) {
             // 1. load the image  
             var image = await loadImagefromPath(path, dims[2], dims[3]);
@@ -99,54 +101,23 @@
             return imageData;
         }
 
+
+        
         const isTypedArray = (function() {
             const TypedArray = Object.getPrototypeOf(Uint8Array);
             return (obj) => obj instanceof TypedArray;
         })();
 
-        function sortedClasses(classProbabilities) {
-            const probs =
-                isTypedArray(classProbabilities) ? Array.prototype.slice.call(classProbabilities) : classProbabilities;
+       
 
-            const sorted = probs.map((prob, index) => [prob, index]).sort((a, b) => b[0] - a[0])
-
-            const topClasses = sorted.map(probIndex => {
-                const iClass = modelClasses[probIndex[1]];
-                return {
-                    index: parseInt(probIndex[1], 10),
-                    name: iClass.replace(/_/g, ' '),
-                    probability: probIndex[0]
-                };
-            });
-            return topClasses;
-        }
-
-        function softmax(arr) {
-            const C = Math.max(...arr);
-            const d = arr.map((y) => Math.exp(y - C)).reduce((a, b) => a + b);
-            return arr.map((value, index) => {
-                return Math.exp(value - C) / d;
-            });
-        }
-
+     
 
         async function inference(path) {
             try {
-                const session = await ort.InferenceSession.create('./finalProject_model.onnx');
-
+            
                 const imageTensor = await getImageTensorFromPath(path);
 
-                const feeds = { input: imageTensor };
-
-                statusOutput.textContent = statusDict[2];
-
-                const results = await session.run(feeds);
                 console.log(session.outputNames);
-
-                const dataOutput = results.output.data;
-                console.log(dataOutput);
-                const softmaxOutput = softmax(Array.prototype.slice.call(dataOutput));
-                return softmaxOutput;
 
             } catch (e) {
                 return e;
@@ -154,39 +125,15 @@
             }
         }
 
+        
         async function inputChanged(event) {
+            
             statusOutput.textContent = statusDict[1];
+            
             const inferenceResult = await inference(URL.createObjectURL(event.target.files[0]));
-            const inferenceResultClasses = sortedClasses(inferenceResult);
-
-            document.getElementById("model-output").replaceChildren();
-
-            for (index in inferenceResultClasses) {
-                const outputTitle = document.createElement("span");
-                const outputData = document.createElement("ul");
-                const dataClassId = document.createElement("li");
-                const dataClassProb = document.createElement("li");
-                const outputSpacer = document.createElement("br");
-
-                if (index == 0) {
-                    outputTitle.classList.add("bold");
-                }
-                outputData.classList.add("no-margin-ul");
-                
-                outputTitle.textContent = inferenceResultClasses[index].name;
-                dataClassId.textContent = `Class id: ${inferenceResultClasses[index].index}`;
-                dataClassProb.textContent = `Probability: ${inferenceResultClasses[index].probability.toFixed(4)}`;
-
-                outputData.appendChild(dataClassId);
-                outputData.appendChild(dataClassProb);
-
-                document.getElementById("model-output").appendChild(outputSpacer);
-                document.getElementById("model-output").appendChild(outputTitle);
-                document.getElementById("model-output").appendChild(outputData);
-            }
-            // document.getElementById("model-output").textContent = inferenceResult;
-            statusOutput.textContent = statusDict[3];
+            
         }
+          
 
         statusOutput.textContent = statusDict[0];
     </script>
