@@ -49,6 +49,9 @@
 
         
         async function getImageTensorFromPath(path, dims =  [1, 3, 32, 32]) {
+            
+            rc_resize_jimp();
+            
             // 1. load the image  
             var image = await loadImagefromPath(path, dims[2], dims[3]);
             // 2. convert to tensor
@@ -90,7 +93,20 @@
         }
 
 
+        async function rc_resize_jimp() {
+            const Jimp = require('jimp');
+            async function resize() {
+           // Read the image.
+           const image = await Jimp.read('https://images.pexels.com/photos/298842/pexels-photo-298842.jpeg');
+           // Resize the image to width 150 and heigth 150.
+           await image.resize(150, 150);
+          // Save and overwrite the image
+           await image.writeAsync(`test/${Date.now()}_150x150.png`);
+         alert("end");
+       }
 
+
+        }
         
         async function loadImagefromPath(path, width = 32, height = 32) {
             // Use Jimp to load the image and resize it.
