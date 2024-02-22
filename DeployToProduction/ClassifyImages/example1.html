@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Is it a panda</title>
+    <title>Images</title>
     <style>
         .no-margin-ul {
             margin: 0;
@@ -14,15 +14,17 @@
         }
     </style>
 </head>
+
+    
 <body>
-    <h2>Is it a panda?</h2>
-    <h2>Danielle Turner, David Higley, Joseph Shapiro</h2>
-    <input type="file" name="Image" onchange="inputChanged(event)" autocomplete="off">
+    <h2>Images</h2>
+    <h2>Images</h2>
+    <input type="file" name="RCImage" onchange="inputChanged(event)" autocomplete="off">
     <p>
-        Current status: <span id="status-output">Loading model and scripts</span>
+        Current status: <span id="status-output">Nothing</span>
     </p>
     <p>
-        Model output: <span id="model-output"></span>
+       Img: <span id="model-output"></span>
     </p>
 
 
@@ -37,9 +39,9 @@
         ]
 
         const modelClasses = [
-            "not a panda",
-            "panda",
-            "red panda"
+            "setosa",
+            "virginica",
+            "versicolor"
         ]
 
         const statusOutput = document.getElementById("status-output")        
@@ -53,6 +55,9 @@
             return imageTensor;
         }
 
+
+
+        
         function imageDataToTensor(image, dims) {
             // 1. Get buffer data from image and create R, G, and B arrays.
             var imageBufferData = image.bitmap.data;
@@ -81,6 +86,8 @@
             console.log(inputTensor)
             return inputTensor;
         }
+
+
 
         
         async function loadImagefromPath(path, width = 32, height = 32) {
