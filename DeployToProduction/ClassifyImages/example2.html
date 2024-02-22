@@ -1,0 +1,33 @@
+<html>
+
+<head>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jimp/0.16.1/jimp.js"></script>
+
+</head>
+
+  <body>
+<script>
+
+jimp.read("https://images.pexels.com/photos/298842/pexels-photo-298842.jpeg").then(image => {
+
+  //resize image using "contain" mode
+  image.contain(100, 150);
+
+  //retrieve image
+  image.getBase64Async(jimp.MIME_JPEG).then(newImage => {
+    let tag = document.createElement("img");
+    tag.src = newImage;
+    document.getElementById("img-container").append(tag)
+  })
+})
+  
+</script>
+
+
+<div id="img-container"></div>
+
+    
+  </body>
+  
+</html>
