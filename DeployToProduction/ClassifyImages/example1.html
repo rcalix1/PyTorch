@@ -102,6 +102,7 @@
               // Save and overwrite the image
                 image.write("lena-half-bw.png");
                 await image.writeAsync('C:\Users\rcalix.PNW.000\Desktop\textOverlay.png');
+                image.write('output.jpg', res.download('output.jpg')); // save
               await image.writeAsync('test/${Date.now()}_150x150.png');
             }
 
